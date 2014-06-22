@@ -1,0 +1,76 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.2
+Created-By: 1.7.0_21-b12 (Oracle Corporation)
+Built-By: xx
+Copyright: xx  
+Web-Site: xx
+Build-Time: 19:13:41 06/22/2014
+Main-Class: com.travelport.start.ItineraryTest
+Class-Path: . lib/FastInfoset-1.2.13.jar lib/activemq-broker-5.9.1.jar
+  lib/activemq-client-5.9.1.jar lib/activemq-openwire-legacy-5.9.1.jar
+  lib/antlr-2.7.7.jar lib/aopalliance-1.0.jar lib/asm-3.3.1.jar lib/co
+ mmons-codec-1.9.jar lib/commons-collections-3.2.1.jar lib/commons-lan
+ g-2.6.jar lib/cxf-core-3.0.0.jar lib/cxf-manifest.jar lib/cxf-rt-bind
+ ings-coloc-3.0.0.jar lib/cxf-rt-bindings-corba-3.0.0.jar lib/cxf-rt-b
+ indings-object-3.0.0.jar lib/cxf-rt-bindings-soap-3.0.0.jar lib/cxf-r
+ t-bindings-xml-3.0.0.jar lib/cxf-rt-databinding-aegis-3.0.0.jar lib/c
+ xf-rt-databinding-jaxb-3.0.0.jar lib/cxf-rt-databinding-jibx-3.0.0.ja
+ r lib/cxf-rt-databinding-sdo-3.0.0.jar lib/cxf-rt-databinding-xmlbean
+ s-3.0.0.jar lib/cxf-rt-features-clustering-3.0.0.jar lib/cxf-rt-front
+ end-jaxrs-3.0.0.jar lib/cxf-rt-frontend-jaxws-3.0.0.jar lib/cxf-rt-fr
+ ontend-js-3.0.0.jar lib/cxf-rt-frontend-simple-3.0.0.jar lib/cxf-rt-j
+ avascript-3.0.0.jar lib/cxf-rt-management-3.0.0.jar lib/cxf-rt-rs-cli
+ ent-3.0.0.jar lib/cxf-rt-rs-extension-providers-3.0.0.jar lib/cxf-rt-
+ rs-extension-search-3.0.0.jar lib/cxf-rt-rs-security-cors-3.0.0.jar l
+ ib/cxf-rt-rs-security-oauth-3.0.0.jar lib/cxf-rt-rs-security-oauth2-3
+ .0.0.jar lib/cxf-rt-rs-security-sso-saml-3.0.0.jar lib/cxf-rt-rs-secu
+ rity-xml-3.0.0.jar lib/cxf-rt-rs-service-description-3.0.0.jar lib/cx
+ f-rt-security-3.0.0.jar lib/cxf-rt-transports-http-3.0.0.jar lib/cxf-
+ rt-transports-http-hc-3.0.0.jar lib/cxf-rt-transports-http-jetty-3.0.
+ 0.jar lib/cxf-rt-transports-http-netty-client-3.0.0.jar lib/cxf-rt-tr
+ ansports-http-netty-server-3.0.0.jar lib/cxf-rt-transports-jms-3.0.0.
+ jar lib/cxf-rt-transports-local-3.0.0.jar lib/cxf-rt-transports-udp-3
+ .0.0.jar lib/cxf-rt-ws-addr-3.0.0.jar lib/cxf-rt-ws-mex-3.0.0.jar lib
+ /cxf-rt-ws-policy-3.0.0.jar lib/cxf-rt-ws-rm-3.0.0.jar lib/cxf-rt-ws-
+ security-3.0.0.jar lib/cxf-rt-wsdl-3.0.0.jar lib/cxf-services-sts-cor
+ e-3.0.0.jar lib/cxf-services-ws-discovery-api-3.0.0.jar lib/cxf-servi
+ ces-ws-discovery-service-3.0.0.jar lib/cxf-services-wsn-api-3.0.0.jar
+  lib/cxf-services-wsn-core-3.0.0.jar lib/cxf-tools-common-3.0.0.jar l
+ ib/cxf-tools-corba-3.0.0.jar lib/cxf-tools-java2ws-3.0.0.jar lib/cxf-
+ tools-misctools-3.0.0.jar lib/cxf-tools-validator-3.0.0.jar lib/cxf-t
+ ools-wadlto-jaxrs-3.0.0.jar lib/cxf-tools-wsdlto-core-3.0.0.jar lib/c
+ xf-tools-wsdlto-databinding-jaxb-3.0.0.jar lib/cxf-tools-wsdlto-front
+ end-javascript-3.0.0.jar lib/cxf-tools-wsdlto-frontend-jaxws-3.0.0.ja
+ r lib/cxf-xjc-boolean-2.7.0.jar lib/cxf-xjc-bug671-2.7.0.jar lib/cxf-
+ xjc-dv-2.7.0.jar lib/cxf-xjc-javadoc-2.7.0.jar lib/cxf-xjc-runtime-2.
+ 7.0.jar lib/cxf-xjc-ts-2.7.0.jar lib/ehcache-2.8.1.jar lib/geronimo-j
+ 2ee-management_1.1_spec-1.0.1.jar lib/geronimo-javamail_1.4_spec-1.7.
+ 1.jar lib/geronimo-jaxws_2.2_spec-1.2.jar lib/geronimo-jms_1.1_spec-1
+ .1.1.jar lib/geronimo-jta_1.1_spec-1.1.1.jar lib/geronimo-servlet_3.0
+ _spec-1.0.jar lib/hawtbuf-1.9.jar lib/httpasyncclient-4.0.1.jar lib/h
+ ttpclient-4.3.3.jar lib/httpcore-4.3.2.jar lib/httpcore-nio-4.3.2.jar
+  lib/istack-commons-runtime-2.16.jar lib/jasypt-1.9.1.jar lib/javax.a
+ nnotation-api-1.2.jar lib/javax.ws.rs-api-2.0.jar lib/jaxb-api-2.2.7.
+ jar lib/jaxb-core-2.2.7.jar lib/jaxb-impl-2.2.7.jar lib/jaxb-xjc-2.2.
+ 7.jar lib/jcl-over-slf4j-1.7.7.jar lib/jettison-1.3.5.jar lib/jetty-c
+ ontinuation-8.1.15.v20140411.jar lib/jetty-http-8.1.15.v20140411.jar 
+ lib/jetty-io-8.1.15.v20140411.jar lib/jetty-security-8.1.15.v20140411
+ .jar lib/jetty-server-8.1.15.v20140411.jar lib/jetty-util-8.1.15.v201
+ 40411.jar lib/joda-time-2.2.jar lib/js-1.7R2.jar lib/mina-core-2.0.7.
+ jar lib/neethi-3.0.3.jar lib/netty-buffer-4.0.18.Final.jar lib/netty-
+ codec-4.0.18.Final.jar lib/netty-codec-http-4.0.18.Final.jar lib/nett
+ y-common-4.0.18.Final.jar lib/netty-handler-4.0.18.Final.jar lib/nett
+ y-transport-4.0.18.Final.jar lib/oauth-20100527.jar lib/oauth-provide
+ r-20100527.jar lib/opensaml-2.6.1.jar lib/openws-1.5.1.jar lib/serial
+ izer-2.7.1.jar lib/slf4j-api-1.7.7.jar lib/slf4j-jdk14-1.7.7.jar lib/
+ spring-aop-3.2.6.RELEASE.jar lib/spring-beans-3.2.6.RELEASE.jar lib/s
+ pring-context-3.2.6.RELEASE.jar lib/spring-core-3.2.6.RELEASE.jar lib
+ /spring-expression-3.2.6.RELEASE.jar lib/spring-web-3.2.6.RELEASE.jar
+  lib/stax2-api-3.1.4.jar lib/velocity-1.7.jar lib/woodstox-core-asl-4
+ .3.0.jar lib/wsdl4j-1.6.3.jar lib/wss4j-bindings-2.0.0.jar lib/wss4j-
+ policy-2.0.0.jar lib/wss4j-ws-security-common-2.0.0.jar lib/wss4j-ws-
+ security-dom-2.0.0.jar lib/wss4j-ws-security-policy-stax-2.0.0.jar li
+ b/wss4j-ws-security-stax-2.0.0.jar lib/xml-resolver-1.2.jar lib/xmlbe
+ ans-2.6.0.jar lib/xmlschema-core-2.1.0.jar lib/xmlsec-2.0.0.jar lib/x
+ mltooling-1.4.1.jar
+

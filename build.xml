@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="travelport-java-test" default="build-app" basedir=".">
+	<description>
+		Trusted Advisor data consumer
+  </description>
+
+	<!--  Initialization   -->
+	<!-- ================= -->
+	<property name="build.javac.version" value="1.7" />
+	<property name="build.javac.debug" value="on" />
+
+	<property name="build.src.path" value="src" />
+	<property name="build.output.path" value="build" />
+	<property name="build.library.path" value="lib" />
+	<property name="build.config.path" value="etc" />
+	<property name="build.wsdl.path" value="wsdl" />
+
+	<property name="build.class.path" value="classes" />
+
+	<property name="build.class.jar.name" value="${ant.project.name}.jar" />
+
+	<property name="build.class.jar.manifest.built-by-name" value="xx" />
+	<property name="build.class.jar.manifest.web-site" value="xx" />
+
+	<property name="javadoc.version" value="1.7" />
+	<property name="javadoc.title" value="Travelport Java Test" />
+	<property name="javadoc.package-names" value="com.travelport.support.*,
+		com.travelport.start.*" />
+	
+	<property name="javadoc.output.path" value="javadoc" />
+
+	<property name="unittest.class.path" value="unittest/classes" />
+	<property name="unittest.src.path" value="unittest/src" />
+	<property name="unittest.library.path" value="unittest/lib" />
+	<property name="unittest.class.jar.name" value="${ant.project.name}-unittest.jar" />
+	<property name="unittest.reports.output.path" value="unittest/reports" />
+    <property name="unittest.test.output.path" 	value="unittest/testoutput" />    
+
+
+	<property name="jar.attribute.mainclass" value="com.travelport.start.ItineraryTest" />
+
+
+
+	<!-- Override property values -->
+	<!-- ======================== -->
+	<property file="build.properties" />
+
+	<!-- Copyright values -->
+	<!-- ======================== -->
+	<property file="copyright.properties" />
+
+	<!-- Project Classpath -->
+	<!-- ================= -->
+	<path id="project.build.class.path">
+		<fileset dir="${build.library.path}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	
+    <!-- Testing Classpath -->
+    <!-- ================= -->
+    <path id="project.unittest.class.path">
+        <path refid="project.build.class.path" />
+        <fileset dir="${build.output.path}">
+            <include name="**/*.jar" />
+        </fileset>
+        <fileset dir="${unittest.library.path}">
+            <include name="**/*.jar" />
+            <include name="**/*.zip" />
+        </fileset>
+        <pathelement location="${build.config.path}/properties"/>
+        <pathelement location="${unittest.config.path}"/>
+    </path>
+
+	<!-- create a property containing all .jar files, prefix lib/, and seperated with a space -->
+	<pathconvert property="manifest.classpath.prop" pathsep=" ">
+		<mapper>
+			<chainedmapper>
+				<!-- remove absolute path -->
+				<flattenmapper />
+				<!-- add lib/ prefix -->
+				<globmapper from="*" to="lib/*" />
+			</chainedmapper>
+		</mapper>
+		<path>
+			<!-- lib.home contains all jar files, in several subdirectories -->
+			<fileset dir="${build.library.path}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+	</pathconvert>
+
+	<!-- Cleanup previous builds -->
+	<!-- ===================== -->
+	<target name="clean">
+		<delete dir="${build.output.path}" />
+		<delete dir="${build.class.path}" />
+		<delete dir="${unittest.class.path}" />
+		<delete dir="${unittest.reports.output.path}" />
+		<delete dir="${unittest.test.output.path}" />
+		<delete dir="${javadoc.output.path}" failonerror="false" />
+	</target>
+
+	<!-- Prepare for compilation -->
+	<!-- ======================= -->
+	<target name="prepare" depends="clean">
+		<mkdir dir="${build.output.path}" />
+		<mkdir dir="${build.output.path}/lib" />
+		<mkdir dir="${build.output.path}/wsdl" />
+		<mkdir dir="${build.class.path}" />
+		<mkdir dir="${build.class.path}/META-INF" />
+		<mkdir dir="${unittest.reports.output.path}" />
+		<mkdir dir="${unittest.class.path}" />
+		<mkdir dir="${unittest.test.output.path}" />        
+	</target>
+
+	<target name="addfiles" depends="prepare">
+		<copy todir="${build.output.path}/lib">
+			<fileset dir="${build.library.path}">
+				<include name="**.jar" />
+			</fileset>
+		</copy>
+		<copydir src="${build.wsdl.path}"
+		           dest="${build.output.path}/wsdl"
+		           includes="**/*.*"/>
+	
+		<copy todir="${build.output.path}">
+			<fileset dir="${build.config.path}/properties">
+				<include name="**.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${build.output.path}">
+			<fileset dir="${build.config.path}">
+				<include name="**.sh" />
+			</fileset>
+			
+		</copy>
+		<copy todir="${build.output.path}">
+			<fileset dir="${build.config.path}">
+				<include name="**.bat" />
+			</fileset>
+			
+		</copy>
+	</target>
+
+	<!--   Compile project -->
+	<!-- ================= -->
+	<target name="compile-src" depends="addfiles">
+		<javac source="${build.javac.version}" srcdir="${build.src.path}" debug="${build.javac.debug}" destDir="${build.class.path}" classpathref="project.build.class.path">
+		</javac>
+	</target>
+
+	<!-- Build project JAR -->
+	<!-- ================= -->
+	<target name="build-manifest" depends="compile-src">
+		<tstamp>
+			<format property="BUILD_TIME" pattern="HH:mm:ss MM/dd/yyyy" />
+		</tstamp>
+		<manifest file="${build.class.path}/META-INF/MANIFEST.MF">
+			<attribute name="Built-By" value="${build.class.jar.manifest.built-by-name}" />
+			<attribute name="Copyright" value="${build.class.jar.manifest.copyright.notice}" />
+			<attribute name="Web-Site" value="${build.class.jar.manifest.web-site}" />
+			<attribute name="Build-Time" value="${BUILD_TIME}" />
+			<attribute name="Main-Class" value="${jar.attribute.mainclass}" />
+			<attribute name="Class-Path" value=". ${manifest.classpath.prop}" />
+		</manifest>
+	</target>
+
+	<target name="build-jar" depends="build-manifest">
+		<jar jarfile="${build.output.path}/${build.class.jar.name}" manifest="${build.class.path}/META-INF/MANIFEST.MF" basedir="${build.class.path}">
+		</jar>
+	</target>
+
+
+	<!--  Generate javadoc -->
+	<!-- ================= -->
+	<target name="generate-javadoc">
+		<delete dir="${javadoc.output.path}" failonerror="false" />
+		<mkdir dir="${javadoc.output.path}" />
+		<javadoc packagenames="${javadoc.package-names}" source="${javadoc.version}" sourcepath="${build.src.path}" destdir="${javadoc.output.path}" classpathref="project.build.class.path" author="false" version="false" use="true" additionalparam="-breakiterator" access="private" windowtitle="${javadoc.title}">
+		</javadoc>
+	</target>
+
+	
+	<!--    Compile test   -->
+	<!-- ================= -->
+	<target name="compile-test" depends="build-jar">
+	    <javac source="${build.javac.version}"
+	           srcdir="${unittest.src.path}"
+	           debug="${build.javac.debug}"
+	           destDir="${unittest.class.path}"
+	           classpathref="project.unittest.class.path">
+	    </javac>
+	</target>
+	
+	<!--   Build test jar  -->
+	<!-- ================= -->
+	<target name="build-test-jar" depends="compile-test,build-manifest">
+	    <jar jarfile="${build.output.path}/${unittest.class.jar.name}"
+	         manifest="${build.class.path}/META-INF/MANIFEST.MF"
+	         basedir="${unittest.class.path}">
+	    </jar>
+	</target>
+	
+	<!-- Executes the tests -->
+	<!-- ================== -->
+	<target name="execute-test" depends="build-test-jar">
+	    <junit printsummary="yes"
+	           showoutput="yes"
+	           haltonfailure="${unittest.halt-on-fail}">
+	
+	        <jvmarg value="-Dlog4j.debug=${unittest.log.debug}" />
+	        
+	        <classpath>
+	            <path refid="project.unittest.class.path" />
+	        </classpath>
+	
+	        <formatter type="xml" />
+	
+	        <batchtest fork="yes" todir="${unittest.reports.output.path}">
+	            <fileset dir="${unittest.src.path}">
+	                <include name="**/*.java" />
+	            </fileset>
+	        </batchtest>
+	    </junit>
+	</target>
+
+	<!--  Build Application   -->
+	<!-- ================= -->
+	<target name="build-app" depends="build-jar" />
+
+	<!--  Build Application and run unit test  -->
+	<!-- ===================================== -->
+	<target name="full" depends="execute-test" />
+
+
+
+</project>

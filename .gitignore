@@ -1,0 +1,12 @@
+*.com
+*.class
+*.dll
+*.exe
+build
+bin
+.DS_Store
+.classpath
+.project
+.settings
+.metadata
+faces-config.pageflow

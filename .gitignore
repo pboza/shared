@@ -4,6 +4,7 @@
 *.exe
 build
 bin
+classes
 .DS_Store
 .classpath
 .project
